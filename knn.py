@@ -58,49 +58,6 @@ class knn:
         self.value_of_nn = arr[count]
         return count
         
-    
-        
-        """
-        arr = sample_values # incoming example
-        sum_distances 
-        min_distance = self.default_min
-        for i in range(1, self.f_num):
-            for ele in arr: # each example
-                distances = []
-                j=0 # row number of specified column's data
-                
-                for dt in self.get_col_elements(i): # each data on specified dataset
-                    temp_distance = self.get_distance(int(ele), int(dt))
-                    distances.append(temp_distance)
-                    if temp_distance < min_distance:
-                        count = j
-        """            
-
-                
-
-        """
-        arr = sample_values
-        dt = []
-        nn_count = 0
-        nn_index = [] # index of nearest neighbors
-        for i in range(1,self.f_num): # satirlari 
-            j=0
-            dt = self.get_col_elements(i)
-            min_dist = 6
-            for y in dt:
-                distance = self.get_distance(int(y), int(arr[i-1]))
-                # distance : herbir sütunun uzaklık değerleri
-                if distance <= min_dist:
-                    min_dist = distance
-                    nn_index.append([j ,i])
-                    nn_count += 1
-                    if nn_count==self.k:
-                        # print(nn_index)
-                j+=1
-                # print(distance)
-            # print("\n")
-        """
-        
             
 
 
