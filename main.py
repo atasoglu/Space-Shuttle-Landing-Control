@@ -1,8 +1,8 @@
 """
-      ~ main.py
+      main.py
 
-      ~ Expirement on Space Shuttle Landing Control
-        used to kNN algorithm to predictions.
+      ~ Expirement on Space Shuttle Landing Control with Machine Learning
+        by using the kNN algorithm to predictions.
         metric: Euclidean
         for more detail, read the document on /docs directory.
         ###
@@ -14,6 +14,7 @@
         author: ahmet atasoglu @ 2018
 
         # for testing the algorithm, please follow the instroductions #
+        # algoritmayı sınamak için, adımları takip edin #
 """
 
 print(__doc__)
