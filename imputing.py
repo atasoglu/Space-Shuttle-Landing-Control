@@ -12,6 +12,7 @@ class imputing:
     
     def __init__(self, target_data):
         self.data = target_data
+        self.all_cols_mods = [] # mod value for every column
     
     def find_missing(self, denoted_sign='*'): # returns positions of each missing values 
         marked = [] # marked missing values
@@ -41,26 +42,25 @@ class imputing:
                         mod = i
         except Exception as ex:
             print("[Error Message]\t",ex)
+        self.all_cols_mods.append(mod)
         return mod 
 
     def handle_missing(self, denoted_sign = '*'): # handling missing values with calculated mod of specified column 
 
         i=0 # number of row
-        arr = self.data
-        for row in arr:
+        for row in self.data:
             j=0 # number of column
             for col in row:
                 if j==0:
                     j+=1
                     continue
                 elif col == denoted_sign:
-                    curr_mod = self.mod_col(j, arr)
+                    curr_mod = self.mod_col(j, self.data)
                     row[j] = curr_mod
-                arr[i] = row
+                self.data[i] = row
                 j+=1
             i+=1
             # print(self.data[i])
-
         return self.data
             
 

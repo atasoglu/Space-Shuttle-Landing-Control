@@ -16,9 +16,17 @@ class knn:
         self.data = target_value
         self.f_num = feature_num
         self.default_min = 10
-        self.classes = [2, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2]
+        self.classes = self.get_all_col()
         self.value_of_nn = 0
-        # print(self.k)
+
+    def get_all_col(self, col_num=0):
+
+        arr = self.data
+        col_data = []
+        for row in arr:
+            col_data.append(int(row[col_num]))
+        return col_data
+        
 
     def get_distance(self, dist, examp_val):
         
@@ -41,7 +49,6 @@ class knn:
         for t in result_arr:
             print(t)
         """
-
         return result_arr
         
     def get_nn(self, results):
@@ -57,7 +64,3 @@ class knn:
             i+=1
         self.value_of_nn = arr[count]
         return count
-        
-            
-
-
