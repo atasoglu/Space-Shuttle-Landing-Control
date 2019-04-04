@@ -23,7 +23,6 @@ class kNNeighbors:
 
     def predict_lazy(self, X_input, X, Y):
         # for 'lazy learning' use only this function !
-        ''' fonksiyon şimdilik sadece tek satırlık X_inputlar üzerinde çalışıyor! '''
         neigbors, dist = [], []
         if self.distance_method is self.euclid:
             for x in X:
@@ -39,7 +38,7 @@ class kNNeighbors:
                     min_index = index_of_min
             dist.pop(min_index)
             neigbors.append(Y[min_index])
-        return self.get_nearest_neigbor(neigbors) # en çok tekrar eden komşu
+        return self.get_nearest_neigbor(neigbors)
         
     def get_nearest_neigbor(self, arr): 
         return max(arr, key=arr.count)
@@ -54,7 +53,8 @@ class kNNeighbors:
         sum = 0
         for x_inp, x_inrow in zip(x_input, x_in_row):
             sum += abs(float(x_inp) - float(x_inrow))
-        return sum      
+        return sum
+
 class preprocessing:
 
     def __init__(self):
