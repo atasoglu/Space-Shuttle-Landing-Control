@@ -31,7 +31,6 @@ class kNNeighbors:
         elif self.distance_method is self.manhattan:
             for x in X:
                 dist.append(self.get_distance_manhattan(X_input, x))
-        # k sayısı kadar en yakın komşuları hesaplama
         for i in range(self.k):
             min_dist = max(dist)
             for dis, index_of_min in zip(dist, range(len(dist))):
@@ -40,18 +39,12 @@ class kNNeighbors:
                     min_index = index_of_min
             dist.pop(min_index)
             neigbors.append(Y[min_index])
-        # return
         return self.get_nearest_neigbor(neigbors) # en çok tekrar eden komşu
         
     def get_nearest_neigbor(self, arr): 
         return max(arr, key=arr.count)
         
     def get_distance_euclid(self, x_input, x_in_row):
-        '''
-        x_input: girdi olarak verilen (yani sınanan) değerler -satır şeklinde-
-        x_in_row: verikümesindeki belirli bir satırın x değerleri
-        y: hedef sınıf özelliği/değeri
-        '''
         sum = 0
         for x_inp, x_inrow in zip(x_input, x_in_row):
             sum += pow(float(x_inp) - float(x_inrow), 2)
@@ -84,6 +77,6 @@ class preprocessing:
             y_test.append(Y[i])
             X.pop(i)
             Y.pop(i)
-        x_train = X # geri kalan X degerleri
-        y_train = Y # geri kalan Y degerleri
+        x_train = X
+        y_train = Y
         return x_train, x_test, y_train, y_test 
