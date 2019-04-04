@@ -1,27 +1,19 @@
-"""
+# -*- coding: utf-8 -*-
+'''
       ~ main.py
-
       ~ Expirement on Space Shuttle Landing Control
         used to kNN algorithm to predictions.
-        metric: Euclidean
         for more detail, read the document on /docs directory.
-        ###
       ~ Uzay Mekiği İniş Kontrolü üzerine deney
         tahmin için kNN (En yakın komşuluk) algoritması kullanılmıştır.
-        ölçüm: Öklid uzaklık formülü
         daha fazla detay için, /docs dizinideki dökümanı okuyabilirsiniz.
-        
-        author: ahmet atasoglu @ 2018
-
-        # for testing the algorithm, please follow the instroductions #
-"""
-
-print(__doc__)
-
+        @author: ahmet atasoglu
+        # for testing the algorithm, please follow the instroductions
+        # algoritmayı sınamak için, talimatları takip edin
+'''
 import csv
-from imputing import *
-from knn import *
-
+from knn import kNNeighbors
+from imputing import imputing
 
 questions = [ # questions to ask the user
         "1) STABILITY: stab or xstab\n'1' to stab, '2' to xstab: ",
@@ -32,45 +24,43 @@ questions = [ # questions to ask the user
         "6) VISIBILITY: yes or no\n'1' to yes, '2' to no: "
 ]
 
-data = []
-file_path = "data\shuttle-landing-control.csv"
-
+# including dataset...
+file_path = 'shuttle.csv'
 with open(file_path) as csv_file:
-        reader = csv.reader(csv_file, quoting=csv.QUOTE_NONE)
-        for row in reader:
-                data.append(row)
-        
+    data, reader = [], csv.reader(csv_file, quoting=csv.QUOTE_NONE)
+    for row in reader: data.append(row)
+
+# imputing for missing values...
 imp = imputing(data)
-# missing_vals = imp.find_missing() # use to get locations and total of missing values on dataset
-# print(missing_vals)
+data = imp.handle_missing()
 
-data = imp.handle_missing() # missing values will be change by this operation
+# parsing dependent and independent variables... 
+x, y = [], []
+for row in data:
+    x.append(row[:6])
+    y.append(row[6:])
 
-# the method that we use to change values is the mod. 
-# for more, look ~ imputing.py
-kNN = knn(1, data, 7)
-train = []
+# creating knn object...
+knn = kNNeighbors(k_value = 3, distance = kNNeighbors.euclid)
 
-# creating training set by your answers...
-
+# collecting test datas from user...
+x_test = []
 for question in questions:
-        train.append(input(question))
+    x_test.append(input(question))
 
-# ...and machine answers the human's question :)
+# prediction...
+y_pred = knn.predict_lazy(x_test, x, y)
 
+# and machine answers human's question :)
 try:
-        result = kNN.get_nn(kNN.fit_nn(train))
-        print("\n /// Machine Says: \\\ ")
-        if kNN.classes[result] == 1:
-                print("shuttle must be manuel controlled!")
-        
-        elif kNN.classes[result] == 2:
-                print("shuttle must be auto controlled!")
-except Exception as ex:
-        print("[Error Message]\t",ex)
+    print("\n>>> Machine Says:")
+    if y_pred[0] is '1':
+        print("shuttle must be manuel controlled!")
+    elif y_pred[0] is '2':
+        print("shuttle must be auto controlled!")
 
-"""
-# use to show newly dataset with repaired datas
-for i in data:
-        print(i)
-"""
+except Exception as ex:
+    print("[Error Message]\t", ex)
+
+
+
