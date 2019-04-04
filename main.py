@@ -25,7 +25,7 @@ questions = [ # questions to ask the user
 ]
 
 # including dataset...
-file_path = 'shuttle.csv'
+file_path = 'doc/shuttle.csv'
 with open(file_path) as csv_file:
     data, reader = [], csv.reader(csv_file, quoting=csv.QUOTE_NONE)
     for row in reader: data.append(row)
