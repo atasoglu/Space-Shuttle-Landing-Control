@@ -9,8 +9,8 @@ class kNNeighbors:
     # init function
     def __init__(self, k_value, distance):
         '''
-        k_value: nbr of neigbors
-        distance: distance method to calculate the distance for each specified neigbors
+        k_value: nbr of neighbors
+        distance: distance method to calculate the distance for each specified neighbors
         '''
         self.k = k_value
         self.distance_method = distance
@@ -23,7 +23,7 @@ class kNNeighbors:
 
     def predict_lazy(self, X_input, X, Y):
         # for 'lazy learning' use only this function !
-        neigbors, dist = [], []
+        neighbors, dist = [], []
         if self.distance_method is self.euclid:
             for x in X:
                 dist.append(self.get_distance_euclid(X_input, x))
@@ -37,10 +37,10 @@ class kNNeighbors:
                     min_dist = dis
                     min_index = index_of_min
             dist.pop(min_index)
-            neigbors.append(Y[min_index])
-        return self.get_nearest_neigbor(neigbors)
+            neighbors.append(Y[min_index])
+        return self.get_nearest_neighbor(neighbors)
         
-    def get_nearest_neigbor(self, arr): 
+    def get_nearest_neighbor(self, arr): 
         return max(arr, key=arr.count)
         
     def get_distance_euclid(self, x_input, x_in_row):
