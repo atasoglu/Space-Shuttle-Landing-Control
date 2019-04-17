@@ -5,11 +5,12 @@
         used to kNN algorithm to predictions.
         for more detail, read the document on /docs directory.
       ~ Uzay Mekiği İniş Kontrolü üzerine deney
-        tahmin için kNN (En yakın komşuluk) algoritması kullanılmıştır.
-        daha fazla detay için, /docs dizinideki dökümanı okuyabilirsiniz.
+        tahmin için kNN (En yakın komşular) algoritması kullanılmıştır.
+        daha fazla detay için, /docs dizinindeki dökümanı okuyabilirsiniz.
+        
         @author: ahmet atasoglu
-        # for testing the algorithm, please follow the instroductions
-        # algoritmayı sınamak için, talimatları takip edin
+        # for testing the algorithm, please follow the instructions.
+        # algoritmayı sınamak için, talimatları takip edin.
 '''
 import csv
 from knn import kNNeighbors
