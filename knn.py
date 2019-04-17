@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from math import sqrt, floor
 from random import random
+
 class kNNeighbors:
     
     # distance methods
-    euclid, manhattan = 'e', 'm', 
+    euclid, manhattan = 'e', 'm' 
     
     # init function
     def __init__(self, k_value, distance):
